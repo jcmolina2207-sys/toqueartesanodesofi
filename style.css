@@ -1,0 +1,197 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* AGREGADO: fuente Lato (Google Fonts) aplicada a todo el sitio */
+body {
+    background-color: #a8c8d8;
+    font-family: 'Lato', sans-serif;
+}
+
+/* Header con el mismo fondo o levemente diferente */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background-color: #072f42;
+}
+
+/* El logo PNG transparente se ve bien sobre cualquier fondo */
+.header img {
+    height: 120px;
+    width: auto;
+    background-color: #a8c8d8;
+    border-radius: 8px;
+}
+
+/* Nav centrado en fila horizontal */
+.header ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin-top: 0.8rem;
+}
+
+.header ul li a {
+    text-decoration: none;
+    color: #d4dee2;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Main centrado vertical y horizontalmente */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 30vh;
+}
+
+/* Texto centrado dentro de la section */
+section {
+    text-align: center;
+    color: #1a3a4a;
+}
+
+/* display: block + margin: 0 auto es lo que fuerza el centrado horizontal de la imagen */
+.seccion img {
+    height: 250px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+/* pie de pagina */
+.footer {
+    background-color: #f5f0eb;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 2rem;
+    gap: 3rem;
+    width: 100%;
+}
+
+.footer-logo img {
+    height: 80px;
+    width: auto;
+}
+
+.footer-contacto {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+}
+
+.footer-contacto a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    /* CORREGIDO: estaba ##3d3d3d (doble #), ahora es #3d3d3d */
+    color: #3d3d3d;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.footer-contacto img {
+    height: 28px;
+    width: auto;
+}
+
+.footer-mercadopago img {
+    height: 40px;
+    width: auto;
+    opacity: 0.85;
+}
+
+.footer-derechos {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #3d3d3d;
+    padding: 0.5rem;
+    background-color: #ede8e3;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.footer img {
+    height: 35px;
+    width: auto;
+}
+
+/* ── Sección Reseñas con CSS Grid ── */
+.resenas {
+    padding: 2.5rem 1.5rem;
+    background-color: #072f42;
+    text-align: center;
+}
+
+.resenas-titulo {
+    color: #d4dee2;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+}
+
+.resenas-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Tablet: 2 columnas */
+@media (max-width: 900px) {
+    .resenas-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Móvil: 1 columna */
+@media (max-width: 500px) {
+    .resenas-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.resena-card {
+    background-color: #f5f0eb;
+    border-radius: 10px;
+    padding: 1.2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    text-align: left;
+}
+
+.resena-texto {
+    font-size: 0.88rem;
+    color: #1a3a4a;
+    line-height: 1.5;
+    flex: 1;
+}
+
+.resena-autor {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #072f42;
+}
+
+.resena-estrellas {
+    color: #e0a800;
+    font-size: 0.9rem;
+}
+

@@ -1,0 +1,34 @@
+Alfajores
+	Alfajor de maicena $
+	Alfajor de coco $
+	Alfajor de maicena c/chocolate $
+	Alfajor bon o non $	
+	Alfajor dos corazones $
+	Alfajor marplatense $
+	
+churros
+	Por unidad
+	Simple: $500
+        DDL: $700
+        Chocolate: $800
+        Chocolate + DDL: $1.100
+	
+	Por docena
+	Simple $5.500  
+	DDL $8.000
+	CH $9.500
+	CH + DDL $13.000
+Tortas
+	Bizcochuelo $
+	Lemon pie $	
+	Torta brownie $
+
+Pan
+	Biscochitos 1/4 $
+	Chipa 1/4 $
+	Chips de j/q $
+	Libritos 1/4 $
+	Trenzas 1/4 $
+
+
+background-image: url('../codigo\ con\ ia\ 02/img/banner02.png');

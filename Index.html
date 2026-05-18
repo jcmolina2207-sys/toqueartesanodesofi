@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="icon" href="img/Logoico.ico">
+    <!-- AGREGADO: Google Fonts - fuente Lato para todo el sitio -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>TOQUE ARTESANO DE SOFI</title>
+</head>
+<body>
+    <header class="header">
+        <a href="Index.html">
+            <img src="img/Logo.jpg" alt="Logo">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="Index.html">Inicio</a></li>
+                <li><a href="pages/productos.html">Productos</a></li>
+                <li><a href="pages/contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="seccion">
+                <h2>Ofertas de la semana</h2>
+                <a href="pages/productos.html">
+                <!-- CORREGIDO: ruta de imagen arreglada (antes apuntaba a una carpeta externa con espacios) -->
+                <img src="img/Churro chocolate + DDL.png" alt="imagen de producto en oferta">
+                </a>
+                <a href="pages/productos.html">
+                    <button>Ver mas productos</button>
+                </a>
+        </section>
+    </main>
+    <!-- SECCIÓN RESEÑAS con CSS Grid -->
+    <section class="resenas">
+        <h2 class="resenas-titulo">Lo que dicen nuestros clientes</h2>
+        <div class="resenas-grid">
+            <div class="resena-card">
+                <p class="resena-texto">"Los churros con chocolate son una delicia, super frescos y a buen precio. ¡Volvería a pedir sin dudarlo!"</p>
+                <span class="resena-autor">— María L.</span>
+                <span class="resena-estrellas">★★★★★</span>
+            </div>
+            <div class="resena-card">
+                <p class="resena-texto">"Los alfajores de maicena son increíbles, caseros de verdad. Perfectos para regalar."</p>
+                <span class="resena-autor">— Carlos M.</span>
+                <span class="resena-estrellas">★★★★★</span>
+            </div>
+            <div class="resena-card">
+                <p class="resena-texto">"La torta brownie superó mis expectativas. La llevo a todas las reuniones y siempre piden el contacto."</p>
+                <span class="resena-autor">— Florencia R.</span>
+                <span class="resena-estrellas">★★★★★</span>
+            </div>
+            <div class="resena-card">
+                <p class="resena-texto">"Pedí una docena de churros DDL para el cumple de mi hijo y volaron. Todos quedaron encantados."</p>
+                <span class="resena-autor">— Adrián G.</span>
+                <span class="resena-estrellas">★★★★★</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-logo">
+            <img src="img/logo2.png" alt="Toque Artesano de Sofi">
+        </div>
+
+        <div class="footer-contacto">
+            <a href="https://wa.me/541111111111" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                11-2407-5797
+            </a>
+
+            <a href="https://instagram.com/toqueartesanodesofi" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                /toqueartesanodesofi
+            </a>
+        </div>
+    </footer>
+    <div class="footer-derechos">
+        © 2026 Toque Artesano de Sofi – Todos los derechos reservados.
+    </div>
+</body>
+</html>

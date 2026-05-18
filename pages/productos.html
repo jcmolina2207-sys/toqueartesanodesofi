@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../img/Logoico.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <title>TOQUE ARTESANO DE SOFI | Productos</title>
+
+    <style>
+        /* ── Sobreescribir el main del CSS global ── */
+        main {
+            display: block;
+            min-height: unset;
+        }
+
+        /* ── Sección intro ── */
+        .seccion-intro {
+            text-align: center;
+            padding: 1.8rem 1rem 0.5rem;
+            color: #1a3a4a;
+        }
+        .seccion-intro h2 { font-size: 1.5rem; margin-bottom: 0.3rem; }
+        .seccion-intro p  { font-size: 0.95rem; color: #3a5a6a; }
+
+        /* ── Grilla de categorías ── */
+        .productos-lista {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            padding: 1.5rem 1rem 0.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .categoria {
+            background: #f5f0eb;
+            border-radius: 12px;
+            padding: 1.2rem 1.4rem;
+            flex: 1 1 260px;
+            max-width: 100%;
+            box-shadow: 0 2px 8px rgba(7,47,66,.10);
+        }
+
+        /* Tablet: 2 columnas */
+        @media (max-width: 768px) {
+            .categoria {
+                flex: 1 1 calc(50% - 1.5rem);
+            }
+        }
+
+        /* Móvil: 1 columna */
+        @media (max-width: 500px) {
+            .productos-lista {
+                padding: 1rem 0.75rem 0.5rem;
+                gap: 1rem;
+            }
+            .categoria {
+                flex: 1 1 100%;
+            }
+        }
+
+        .categoria h2 {
+            font-size: 1.1rem;
+            color: #072f42;
+            margin-bottom: 0.6rem;
+            border-bottom: 2px solid #a8c8d8;
+            padding-bottom: 0.3rem;
+        }
+
+        .categoria h3 {
+            font-size: 0.82rem;
+            color: #3a5a6a;
+            margin: 0.8rem 0 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+
+        .categoria ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* ── Fila de producto ── */
+        .categoria li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 0;
+            border-bottom: 1px solid #e0d8d0;
+        }
+        .categoria li:last-child { border-bottom: none; }
+
+        .nombre-producto {
+            flex: 1;
+            font-size: 0.9rem;
+            color: #072f42;
+            cursor: pointer;
+            text-decoration: underline dotted #a8c8d8;
+            transition: color .15s;
+        }
+        .nombre-producto:hover { color: #0a4a67; }
+
+        .precio {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #1a3a4a;
+            white-space: nowrap;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        /* ── Controles +/- ── */
+        .cantidad-control {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .cantidad-control button {
+            width: 24px;
+            height: 24px;
+            border: none;
+            border-radius: 50%;
+            background: #072f42;
+            color: #fff;
+            font-size: 1rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: background .15s;
+            padding: 0;
+        }
+        .cantidad-control button:hover { background: #0a4a67; }
+        .cantidad-control .cantidad {
+            min-width: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #072f42;
+        }
+
+        /* ── Botón finalizar ── */
+        .btn-finalizar-wrap {
+            text-align: center;
+            padding: 1.2rem 0 2rem;
+        }
+        .btn-finalizar {
+            background-color: #072f42;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 2.2rem;
+            font-size: 1rem;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background .2s, transform .1s;
+            box-shadow: 0 3px 10px rgba(7,47,66,.25);
+        }
+        .btn-finalizar:hover  { background: #0a4a67; }
+        .btn-finalizar:active { transform: scale(.97); }
+
+        /* ── Modal imagen ── */
+        #modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.65);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+        #modal.activo { display: flex; }
+
+        .modal-contenido {
+            background: #f5f0eb;
+            border-radius: 14px;
+            padding: 1.2rem;
+            max-width: 90vw;
+            max-height: 90vh;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,.4);
+            cursor: default;
+            animation: popIn .2s ease;
+        }
+        @keyframes popIn {
+            from { transform: scale(.85); opacity: 0; }
+            to   { transform: scale(1);  opacity: 1; }
+        }
+        .modal-contenido img {
+            max-width: 100%;
+            max-height: 65vh;
+            border-radius: 8px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+        .modal-contenido p {
+            margin-top: 0.7rem;
+            font-weight: 700;
+            color: #072f42;
+            font-size: 1rem;
+        }
+        .modal-cerrar {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            background: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            line-height: 1;
+            box-shadow: 0 2px 6px rgba(0,0,0,.2);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="../Index.html">
+            <img src="../img/Logo.jpg" alt="Logo">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="../Index.html">Inicio</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="seccion-intro">
+            <h2>Bienvenidos a nuestra tienda</h2>
+            <p>Hacé clic sobre un producto para ver la foto · Usá +/− para elegir cantidad · Luego presioná <strong>Finalizar pedido</strong></p>
+        </div>
+
+        <div class="productos-lista">
+
+            <!-- ALFAJORES -->
+            <div class="categoria">
+                <h2>🥐 Alfajores</h2>
+                <ul>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Alfajor de maicena.jpg.jpg','Alfajor de maicena')">Alfajor de maicena x12</span>
+                        <span class="precio">$8.000</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Alfajor de coco.jpg','Alfajor de coco')">Alfajor de coco</span>
+                        <span class="precio">$</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Alfajor de maicena c-chocolate.jpg','Alfajor de maicena c/chocolate')">Alfajor de maicena c/chocolate</span>
+                        <span class="precio">$</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Alfajor Bon o Bon.jpg','Alfajor Bon o Bon')">Alfajor Bon o Bon</span>
+                        <span class="precio">$3.500</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Alfajor dos corazones.jpg','Alfajor dos corazones')">Alfajor dos corazones</span>
+                        <span class="precio">$3.500</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Alfajor marplatense.jpg','Alfajor marplatense')">Alfajor marplatense</span>
+                        <span class="precio">$</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- CHURROS -->
+            <div class="categoria">
+                <h2>🥖 Churros</h2>
+                <h3>Por unidad</h3>
+                <ul>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Churro simple.jpg','Churro simple')">Simple</span>
+                        <span class="precio">$500</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/banner01.png','Churro DDL')">DDL</span>
+                        <span class="precio">$700</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Churro chocolate.png','Churro chocolate')">Chocolate</span>
+                        <span class="precio">$800</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Churro chocolate + DDL.png','Churro chocolate + DDL')">Chocolate + DDL</span>
+                        <span class="precio">$1.100</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                </ul>
+                <h3>Por media docena</h3>
+                <ul>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Churro simple.jpg','Simple (docena)')">Simple (docena)</span>
+                        <span class="precio">$2.750</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/banner01.png','DDL (docena)')">DDL (docena)</span>
+                        <span class="precio">$4.000</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Churro chocolate.png','Chocolate (docena)')">Chocolate (docena)</span>
+                        <span class="precio">$4.750</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Churro chocolate + DDL.png','Chocolate + DDL (docena)')">Chocolate + DDL (docena)</span>
+                        <span class="precio">$6.500</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                </ul>
+                <h3>Por docena</h3>
+                <ul>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Churro simple.jpg','Simple (docena)')">Simple (docena)</span>
+                        <span class="precio">$5.500</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/banner01.png','DDL (docena)')">DDL (docena)</span>
+                        <span class="precio">$8.000</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Churro chocolate.png','Chocolate (docena)')">Chocolate (docena)</span>
+                        <span class="precio">$9.500</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Churro chocolate + DDL.png','Chocolate + DDL (docena)')">Chocolate + DDL (docena)</span>
+                        <span class="precio">$13.000</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- TORTAS -->
+            <div class="categoria">
+                <h2>🎂 Tortas</h2>
+                <ul>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Bizcochuelo.jpg','Bizcochuelo')">Bizcochuelo</span>
+                        <span class="precio">$4.500</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Lemon pie.jpg','Lemon pie')">Lemon pie</span>
+                        <span class="precio">$18.000</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Torta brownie.jpg','Torta brownie')">Torta brownie</span>
+                        <span class="precio">$26.000</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Torta brownie.jpg','Torta brownie')">Pastafrola BAtata</span>
+                        <span class="precio">$12.000</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Torta brownie.jpg','Torta brownie')">Pastafrola membrillo</span>
+                        <span class="precio">$14.000</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- PAN -->
+            <div class="categoria">
+                <h2>🍞 Pan</h2>
+                <ul>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Biscochitos 1-4.jpg','Biscochitos 1/4')">Biscochitos 1/4</span>
+                        <span class="precio">$1.600</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Chipa.jpg','Chipa 1/4')">Chipa 1/4</span>
+                        <span class="precio">$</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Chips de j-q.jpg','Chips de j/q')">Chips de j/q</span>
+                        <span class="precio">$</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/Libritos 01.jpg','Libritos 1/4')">Libritos 1/4</span>
+                        <span class="precio">$</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="nombre-producto" onclick="abrirModal('../img/trenzas.jpg','Trenzas 1/4')">Trenzas 1/4</span>
+                        <span class="precio">$</span>
+                        <div class="cantidad-control">
+                            <button onclick="cambiarCantidad(this,-1)">−</button>
+                            <span class="cantidad">0</span>
+                            <button onclick="cambiarCantidad(this,1)">+</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div><!-- /productos-lista -->
+
+        <div class="btn-finalizar-wrap">
+            <button class="btn-finalizar" onclick="finalizarPedido()">Finalizar pedido 🛒</button>
+        </div>
+    </main>
+
+    <!-- MODAL -->
+    <div id="modal" onclick="cerrarModal(event)">
+        <div class="modal-contenido" onclick="event.stopPropagation()">
+            <button class="modal-cerrar" onclick="cerrarModal()">✕</button>
+            <img id="modal-img" src="" alt="">
+            <p id="modal-titulo"></p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-logo">
+            <img src="../img/logo2.png" alt="Toque Artesano de Sofi">
+        </div>
+        <div class="footer-contacto">
+            <a href="https://wa.me/541111111111" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                11-2407-5797
+            </a>
+            <a href="https://instagram.com/toqueartesanodesofi" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                /toqueartesanodesofi
+            </a>
+        </div>
+    </footer>
+    <div class="footer-derechos">
+        © 2026 Toque Artesano de Sofi – Todos los derechos reservados.
+    </div>
+
+    <script>
+        /* ── Controles de cantidad ── */
+        function cambiarCantidad(btn, delta) {
+            const span = btn.parentElement.querySelector('.cantidad');
+            let val = parseInt(span.textContent) + delta;
+            if (val < 0) val = 0;
+            span.textContent = val;
+        }
+
+        /* ── Modal de imagen ── */
+        function abrirModal(src, titulo) {
+            document.getElementById('modal-img').src = src;
+            document.getElementById('modal-titulo').textContent = titulo;
+            document.getElementById('modal').classList.add('activo');
+        }
+
+        function cerrarModal(e) {
+            // Si se llamó desde el overlay (click fuera del contenido) o desde el botón ✕
+            document.getElementById('modal').classList.remove('activo');
+        }
+
+        // Cerrar con tecla Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') cerrarModal();
+        });
+
+        /* ── Finalizar pedido ── */
+        function finalizarPedido() {
+            const items = [];
+
+            document.querySelectorAll('.categoria li').forEach(li => {
+                const cantidadSpan = li.querySelector('.cantidad');
+                const cantidad = parseInt(cantidadSpan.textContent);
+                if (cantidad > 0) {
+                    const nombre = li.querySelector('.nombre-producto').textContent.trim();
+                    const precio = li.querySelector('.precio').textContent.trim();
+                    items.push({ nombre, precio, cantidad });
+                    cantidadSpan.textContent = '0';
+                }
+            });
+
+            if (items.length === 0) {
+                alert('Seleccioná al menos un producto antes de finalizar el pedido.');
+                return;
+            }
+
+            // Armar mensaje para WhatsApp
+            let msg = '¡Hola! Quiero hacer el siguiente pedido:%0A%0A';
+            items.forEach(i => {
+                msg += `• ${i.nombre} x${i.cantidad} (${i.precio})%0A`;
+            });
+            msg += '%0A¡Gracias!';
+
+            // Abrir WhatsApp con el pedido pre-cargado
+            window.open('https://wa.me/541111111111?text=' + msg, '_blank');
+        }
+    </script>
+</body>
+</html>
