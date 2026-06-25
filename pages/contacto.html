@@ -96,16 +96,38 @@
             padding: 1rem;
             margin-top: 1rem;
         }
+        /* ── Toast (reemplaza los alert) ── */
+        #toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background-color: #072f42;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: 'Lato', sans-serif;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 9999;
+            white-space: nowrap;
+        }
+        #toast.visible {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
     </style>
 </head>
 <body>
     <header class="header">
-        <a href="../Index.html">
+        <a href="../index.html">
             <img src="../img/Logo.jpg" alt="Logo">
         </a>
         <nav>
             <ul>
-                <li><a href="../Index.html">Inicio</a></li>
+                <li><a href="../index.html">Inicio</a></li>
                 <li><a href="productos.html">Productos</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
             </ul>
@@ -158,6 +180,9 @@
         </div>
     </main>
 
+    <!-- TOAST: mensaje flotante que reemplaza los alert() -->
+    <div id="toast"></div>
+
     <footer class="footer">
         <div class="footer-logo">
             <img src="../img/logo2.png" alt="Toque Artesano de Sofi">
@@ -182,6 +207,20 @@
         // Se ejecuta cuando el usuario hace clic en "Enviar mensaje"
 
         const form = document.getElementById('formulario-contacto');
+
+        // LOCALSTORAGE: pre-llenar campos si el usuario ya contactó antes
+        const nombreGuardado = localStorage.getItem('contacto_nombre');
+        const emailGuardado  = localStorage.getItem('contacto_email');
+        if (nombreGuardado) document.getElementById('nombre').value = nombreGuardado;
+        if (emailGuardado)  document.getElementById('email').value  = emailGuardado;
+
+        /* ── Toast: reemplaza los alert() ── */
+        function mostrarAviso(mensaje) {
+            const toast = document.getElementById('toast');
+            toast.textContent = mensaje;
+            toast.classList.add('visible');
+            setTimeout(() => toast.classList.remove('visible'), 3000);
+        }
 
         form.addEventListener('submit', async function(evento) {
             evento.preventDefault();
@@ -221,13 +260,21 @@
                     });
 
                     if (respuesta.ok) {
+                        // LOCALSTORAGE: guardar nombre y email para la próxima visita
+                        localStorage.setItem('contacto_nombre', nombre);
+                        localStorage.setItem('contacto_email',  email);
+
                         document.getElementById('exito').style.display = 'block';
                         form.reset();
+
+                        // LOCALSTORAGE: restaurar los campos después del reset
+                        document.getElementById('nombre').value = nombre;
+                        document.getElementById('email').value  = email;
                     } else {
-                        alert('Hubo un error al enviar el mensaje. Intentá de nuevo.');
+                        mostrarAviso('Hubo un error al enviar el mensaje. Intentá de nuevo.');
                     }
                 } catch (err) {
-                    alert('Error de conexión. Verificá tu internet e intentá de nuevo.');
+                    mostrarAviso('Error de conexión. Verificá tu internet e intentá de nuevo.');
                 } finally {
                     btn.disabled = false;
                     btn.textContent = 'Enviar mensaje';
@@ -246,6 +293,31 @@
             document.getElementById(campo).classList.remove('error');
             document.getElementById('error-' + campo).style.display = 'none';
         }
+
+        // VALIDACIÓN EN TIEMPO REAL: el error desaparece mientras el usuario escribe
+
+        // Nombre: se oculta el error en cuanto el campo no está vacío
+        document.getElementById('nombre').addEventListener('input', function() {
+            if (this.value.trim() !== '') ocultarError('nombre');
+        });
+
+        // Email: se oculta el error cuando el formato empieza a ser válido
+        document.getElementById('email').addEventListener('input', function() {
+            const formatoEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (formatoEmail.test(this.value.trim())) ocultarError('email');
+        });
+
+        // Teléfono: se oculta el error cuando solo quedan números (o está vacío)
+        document.getElementById('telefono').addEventListener('input', function() {
+            const soloNumeros = /^\d+$/;
+            const val = this.value.trim();
+            if (val === '' || soloNumeros.test(val)) ocultarError('telefono');
+        });
+
+        // Mensaje: se oculta el error en cuanto el campo no está vacío
+        document.getElementById('mensaje').addEventListener('input', function() {
+            if (this.value.trim() !== '') ocultarError('mensaje');
+        });
     </script>
 </body>
 </html>
