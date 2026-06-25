@@ -1,0 +1,65 @@
+[
+  {
+    "categoria": "🥐 Alfajores",
+    "productos": [
+      { "nombre": "Alfajor de maicena x12",        "precio": "$8.000",  "imagen": "../img/Alfajor de maicena.jpg.jpg" },
+      { "nombre": "Alfajor de coco",                "precio": "$",       "imagen": "../img/Alfajor de coco.jpg" },
+      { "nombre": "Alfajor de maicena c/chocolate", "precio": "$",       "imagen": "../img/Alfajor de maicena c-chocolate.jpg" },
+      { "nombre": "Alfajor Bon o Bon",              "precio": "$3.500",  "imagen": "../img/Alfajor Bon o Bon.jpg" },
+      { "nombre": "Alfajor dos corazones",          "precio": "$3.500",  "imagen": "../img/Alfajor dos corazones.jpg" },
+      { "nombre": "Alfajor marplatense",            "precio": "$",       "imagen": "../img/Alfajor marplatense.jpg" }
+    ]
+  },
+  {
+    "categoria": "🥖 Churros",
+    "subcategorias": [
+      {
+        "titulo": "Por unidad",
+        "productos": [
+          { "nombre": "Simple",            "precio": "$500",   "imagen": "../img/Churro simple.jpg" },
+          { "nombre": "DDL",               "precio": "$700",   "imagen": "../img/banner01.png" },
+          { "nombre": "Chocolate",         "precio": "$800",   "imagen": "../img/Churro chocolate.png" },
+          { "nombre": "Chocolate + DDL",   "precio": "$1.100", "imagen": "../img/Churro chocolate + DDL.png" }
+        ]
+      },
+      {
+        "titulo": "Por media docena",
+        "productos": [
+          { "nombre": "Simple (media docena)",          "precio": "$2.750", "imagen": "../img/Churro simple.jpg" },
+          { "nombre": "DDL (media docena)",             "precio": "$4.000", "imagen": "../img/banner01.png" },
+          { "nombre": "Chocolate (media docena)",       "precio": "$4.750", "imagen": "../img/Churro chocolate.png" },
+          { "nombre": "Chocolate + DDL (media docena)", "precio": "$6.500", "imagen": "../img/Churro chocolate + DDL.png" }
+        ]
+      },
+      {
+        "titulo": "Por docena",
+        "productos": [
+          { "nombre": "Simple (docena)",          "precio": "$5.500",  "imagen": "../img/Churro simple.jpg" },
+          { "nombre": "DDL (docena)",             "precio": "$8.000",  "imagen": "../img/banner01.png" },
+          { "nombre": "Chocolate (docena)",       "precio": "$9.500",  "imagen": "../img/Churro chocolate.png" },
+          { "nombre": "Chocolate + DDL (docena)", "precio": "$13.000", "imagen": "../img/Churro chocolate + DDL.png" }
+        ]
+      }
+    ]
+  },
+  {
+    "categoria": "🎂 Tortas",
+    "productos": [
+      { "nombre": "Bizcochuelo",           "precio": "$4.500",  "imagen": "../img/Bizcochuelo.jpg" },
+      { "nombre": "Lemon pie",             "precio": "$18.000", "imagen": "../img/Lemon pie.jpg" },
+      { "nombre": "Torta brownie",         "precio": "$26.000", "imagen": "../img/Torta brownie.jpg" },
+      { "nombre": "Pastafrola batata",     "precio": "$12.000", "imagen": "../img/Torta brownie.jpg" },
+      { "nombre": "Pastafrola membrillo",  "precio": "$14.000", "imagen": "../img/Torta brownie.jpg" }
+    ]
+  },
+  {
+    "categoria": "🍞 Pan",
+    "productos": [
+      { "nombre": "Biscochitos 1/4", "precio": "$1.600", "imagen": "../img/Biscochitos 1-4.jpg" },
+      { "nombre": "Chipa 1/4",       "precio": "$",      "imagen": "../img/Chipa.jpg" },
+      { "nombre": "Chips de j/q",    "precio": "$",      "imagen": "../img/Chips de j-q.jpg" },
+      { "nombre": "Libritos 1/4",    "precio": "$",      "imagen": "../img/Libritos 01.jpg" },
+      { "nombre": "Trenzas 1/4",     "precio": "$",      "imagen": "../img/trenzas.jpg" }
+    ]
+  }
+]
