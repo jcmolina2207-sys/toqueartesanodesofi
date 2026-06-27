@@ -96,6 +96,7 @@
             padding: 1rem;
             margin-top: 1rem;
         }
+
         /* ── Toast (reemplaza los alert) ── */
         #toast {
             position: fixed;
@@ -138,41 +139,35 @@
         <div class="contacto-container">
             <h2>Contactanos</h2>
 
-            <!-- NUEVO: formulario de contacto con validación -->
             <form id="formulario-contacto" action="https://formspree.io/f/maqvlnvj" method="POST" novalidate>
                 <input type="hidden" name="_subject" value="Nuevo contacto - Toque Artesano de Sofi">
 
                 <div class="campo">
                     <label for="nombre">Nombre completo</label>
                     <input type="text" id="nombre" name="nombre" placeholder="Tu nombre">
-                    <!-- Mensaje que aparece si el campo queda vacío -->
                     <span class="mensaje-error" id="error-nombre">Por favor ingresá tu nombre.</span>
                 </div>
 
                 <div class="campo">
                     <label for="email">Correo electrónico</label>
                     <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com">
-                    <!-- Mensaje que aparece si el email no tiene formato válido -->
                     <span class="mensaje-error" id="error-email">Ingresá un correo electrónico válido.</span>
                 </div>
 
                 <div class="campo">
                     <label for="telefono">Teléfono (opcional)</label>
                     <input type="tel" id="telefono" name="telefono" placeholder="Ej: 1123456789">
-                    <!-- Mensaje que aparece si escribe letras en vez de números -->
                     <span class="mensaje-error" id="error-telefono">El teléfono solo puede contener números.</span>
                 </div>
 
                 <div class="campo">
                     <label for="mensaje">Mensaje</label>
                     <textarea id="mensaje" name="mensaje" placeholder="Escribí tu consulta acá..."></textarea>
-                    <!-- Mensaje que aparece si el campo queda vacío -->
                     <span class="mensaje-error" id="error-mensaje">Por favor escribí tu mensaje.</span>
                 </div>
 
                 <button type="submit" class="btn-enviar">Enviar mensaje</button>
 
-                <!-- Aparece solo si todo el formulario fue completado correctamente -->
                 <div class="exito" id="exito">
                     ¡Mensaje enviado! Te respondemos a la brevedad.
                 </div>
@@ -203,12 +198,9 @@
     </div>
 
     <script>
-        // VALIDACIÓN DEL FORMULARIO
-        // Se ejecuta cuando el usuario hace clic en "Enviar mensaje"
-
         const form = document.getElementById('formulario-contacto');
 
-        // LOCALSTORAGE: pre-llenar campos si el usuario ya contactó antes
+        // LOCALSTORAGE: pre-llenar nombre y email si el usuario ya contactó antes
         const nombreGuardado = localStorage.getItem('contacto_nombre');
         const emailGuardado  = localStorage.getItem('contacto_email');
         if (nombreGuardado) document.getElementById('nombre').value = nombreGuardado;
@@ -247,7 +239,6 @@
             else { ocultarError('mensaje'); }
 
             if (!hayErrores) {
-                // Deshabilitar botón mientras se envía
                 const btn = form.querySelector('.btn-enviar');
                 btn.disabled = true;
                 btn.textContent = 'Enviando...';
@@ -264,12 +255,17 @@
                         localStorage.setItem('contacto_nombre', nombre);
                         localStorage.setItem('contacto_email',  email);
 
-                        document.getElementById('exito').style.display = 'block';
+                        // CORRECCIÓN: limpiar todos los campos del formulario
                         form.reset();
 
-                        // LOCALSTORAGE: restaurar los campos después del reset
-                        document.getElementById('nombre').value = nombre;
-                        document.getElementById('email').value  = email;
+                        // Mostrar mensaje de éxito
+                        document.getElementById('exito').style.display = 'block';
+
+                        // Ocultar el mensaje de éxito después de 5 segundos
+                        setTimeout(() => {
+                            document.getElementById('exito').style.display = 'none';
+                        }, 5000);
+
                     } else {
                         mostrarAviso('Hubo un error al enviar el mensaje. Intentá de nuevo.');
                     }
@@ -294,27 +290,22 @@
             document.getElementById('error-' + campo).style.display = 'none';
         }
 
-        // VALIDACIÓN EN TIEMPO REAL: el error desaparece mientras el usuario escribe
-
-        // Nombre: se oculta el error en cuanto el campo no está vacío
+        // VALIDACIÓN EN TIEMPO REAL
         document.getElementById('nombre').addEventListener('input', function() {
             if (this.value.trim() !== '') ocultarError('nombre');
         });
 
-        // Email: se oculta el error cuando el formato empieza a ser válido
         document.getElementById('email').addEventListener('input', function() {
             const formatoEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (formatoEmail.test(this.value.trim())) ocultarError('email');
         });
 
-        // Teléfono: se oculta el error cuando solo quedan números (o está vacío)
         document.getElementById('telefono').addEventListener('input', function() {
             const soloNumeros = /^\d+$/;
             const val = this.value.trim();
             if (val === '' || soloNumeros.test(val)) ocultarError('telefono');
         });
 
-        // Mensaje: se oculta el error en cuanto el campo no está vacío
         document.getElementById('mensaje').addEventListener('input', function() {
             if (this.value.trim() !== '') ocultarError('mensaje');
         });
