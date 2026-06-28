@@ -27,11 +27,12 @@ Una tienda online con páginas de inicio, catálogo de productos y contacto. El 
 ### Formulario de contacto (`contacto.html`)
 - Validación de campos en tiempo real: los errores desaparecen mientras el usuario escribe.
 - Envío asíncrono con `fetch` + `async/await` a Formspree sin recargar la página.
-- **LocalStorage**: al enviar el formulario con éxito, guarda el nombre y email del usuario. La próxima vez que visita la página, los campos aparecen pre-completados.
+- **LocalStorage**: al enviar el formulario con éxito, guarda el nombre y email del usuario (para uso interno de la app). Todos los campos se limpian tras el envío exitoso.
 
 ### Catálogo de productos (`productos.html`)
 - **fetch + async/await**: los productos se cargan desde `productos.json` al entrar a la página. El HTML no tiene productos hardcodeados; JS genera todas las tarjetas dinámicamente.
-- **LocalStorage**: el carrito persiste entre sesiones. Si el usuario agrega productos y cierra la pestaña, al volver las cantidades siguen guardadas. Al finalizar el pedido, el carrito se limpia automáticamente.
+- **LocalStorage**: el carrito se guarda en tiempo real mientras el usuario agrega productos. Al finalizar el pedido, el carrito se limpia automáticamente. El carrito arranca vacío en cada sesión nueva.
+- Carrito flotante en esquina inferior derecha: muestra el total acumulado en pesos y la cantidad de items en tiempo real.
 - Modal de imagen al hacer clic en cada producto (sin librerías externas).
 - Botón "Finalizar pedido" que arma el mensaje y abre WhatsApp con el pedido pre-cargado.
 - Toast de notificación que reemplaza los `alert()` del navegador.
@@ -48,12 +49,13 @@ Una tienda online con páginas de inicio, catálogo de productos y contacto. El 
 ### Para probar LocalStorage del formulario
 1. Ir a `pages/contacto.html`.
 2. Completar y enviar el formulario.
-3. Recargar la página: nombre y email deben aparecer pre-completados.
+3. Abrir DevTools → Application → LocalStorage: verificar que aparecen `contacto_nombre` y `contacto_email` guardados.
 
 ### Para probar LocalStorage del carrito
 1. Ir a `pages/productos.html`.
 2. Agregar cantidades a algunos productos.
-3. Cerrar la pestaña y volver a abrir la página: las cantidades deben estar restauradas.
+3. Abrir DevTools → Application → LocalStorage: verificar que aparece la clave `carrito` con los productos seleccionados.
+4. Al hacer clic en "Finalizar pedido", la clave `carrito` se elimina automáticamente.
 
 ### Para probar fetch y renderizado dinámico
 1. Abrir las DevTools del navegador (F12) → pestaña **Network**.
