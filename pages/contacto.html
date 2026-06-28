@@ -200,12 +200,6 @@
     <script>
         const form = document.getElementById('formulario-contacto');
 
-        // LOCALSTORAGE: pre-llenar nombre y email si el usuario ya contactó antes
-        const nombreGuardado = localStorage.getItem('contacto_nombre');
-        const emailGuardado  = localStorage.getItem('contacto_email');
-        if (nombreGuardado) document.getElementById('nombre').value = nombreGuardado;
-        if (emailGuardado)  document.getElementById('email').value  = emailGuardado;
-
         /* ── Toast: reemplaza los alert() ── */
         function mostrarAviso(mensaje) {
             const toast = document.getElementById('toast');
