@@ -373,6 +373,11 @@
 
     <script>
 
+        // LOCALSTORAGE: limpiar carrito viejo al entrar — siempre arranca vacío
+        localStorage.removeItem('carrito');
+        localStorage.removeItem('contacto_nombre');
+        localStorage.removeItem('contacto_email');
+
         /* ── Función auxiliar: extrae el número de un precio como "$1.500" → 1500 ── */
         function parsearPrecio(texto) {
             // Eliminar "$", ".", espacios y convertir a número
