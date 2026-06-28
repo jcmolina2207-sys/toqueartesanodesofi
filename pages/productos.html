@@ -453,11 +453,8 @@
 
                 contenedor.innerHTML = categorias.map(crearCategoria).join('');
 
-                // LOCALSTORAGE: restaurar cantidades guardadas de la sesión anterior
-                restaurarCarrito();
-
-                // Actualizar el carrito flotante con los datos restaurados
-                actualizarCarritoFlotante();
+                // LOCALSTORAGE: limpiar el carrito al entrar (siempre arranca vacío)
+                localStorage.removeItem('carrito');
             } catch (error) {
                 contenedor.innerHTML = '<p style="text-align:center; color:#c0392b;">Error al cargar los productos. Recargá la página.</p>';
                 console.error('Error cargando productos.json:', error);
