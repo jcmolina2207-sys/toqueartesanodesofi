@@ -198,6 +198,10 @@
     </div>
 
     <script>
+        // LOCALSTORAGE: limpiar datos viejos al entrar
+        localStorage.removeItem('contacto_nombre');
+        localStorage.removeItem('contacto_email');
+
         const form = document.getElementById('formulario-contacto');
 
         /* ── Toast: reemplaza los alert() ── */
