@@ -6,29 +6,33 @@
     <link rel="icon" href="../img/Logoico.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Lato:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Lato:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <title>Contacto – Toque Artesano de Sofi</title>
 </head>
 <body>
 
-    <!-- NAVBAR -->
     <header class="header">
-        <a class="header-logo" href="../index.html">
-            <img src="../img/Logo.jpg" alt="Toque Artesano de Sofi">
-        </a>
-        <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
-            <span></span><span></span><span></span>
-        </div>
-        <nav id="nav-principal">
+        <nav class="header-nav-left" id="nav-principal">
             <ul>
                 <li><a href="../index.html">Inicio</a></li>
                 <li><a href="productos.html">Productos</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="contacto.html" class="activo">Contacto</a></li>
             </ul>
         </nav>
-        <div class="header-cta">
-            <a class="btn-cta-nav" href="productos.html">Hacé tu pedido 🛒</a>
+        <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
+        <a class="header-logo" href="../index.html">
+            <img src="../img/Logo.jpg" alt="Toque Artesano de Sofi">
+            <span class="header-logo-sub">Panadería · Pastelería · Artesanal</span>
+        </a>
+        <div class="header-right">
+            <a class="icon-link" href="https://wa.me/541124075797" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+            </a>
+            <a class="icon-link" href="https://instagram.com/toqueartesanodesofi" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+            </a>
+            <a class="btn-pedido" href="productos.html">Hacé tu pedido 🛒</a>
         </div>
     </header>
 
@@ -40,9 +44,8 @@
         </div>
 
         <div class="contacto-layout">
-            <!-- Panel izquierdo info -->
             <div class="contacto-info">
-                <h2 class="contacto-info-titulo">¿Cómo <em>podemos</em> ayudarte?</h2>
+                <h2 class="contacto-info-titulo">¿Cómo podemos ayudarte?</h2>
                 <div class="contacto-info-lista">
                     <div class="contacto-info-item">
                         <span class="contacto-info-item-icono">📍</span>
@@ -68,17 +71,15 @@
                     <div class="contacto-info-item">
                         <span class="contacto-info-item-icono">⏰</span>
                         <div class="contacto-info-item-texto">
-                            <strong>Horario de atención</strong>
+                            <strong>Horario</strong>
                             <span>Lunes a sábado · 9 a 20 hs</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Panel derecho formulario -->
             <div class="contacto-formulario">
                 <h2>Envianos un mensaje</h2>
-
                 <form id="formulario-contacto" action="https://formspree.io/f/maqvlnvj" method="POST" novalidate>
                     <input type="hidden" name="_subject" value="Nuevo contacto - Toque Artesano de Sofi">
 
@@ -87,19 +88,16 @@
                         <input type="text" id="nombre" name="nombre" placeholder="Tu nombre">
                         <span class="mensaje-error" id="error-nombre">Por favor ingresá tu nombre.</span>
                     </div>
-
                     <div class="campo">
                         <label for="email">Correo electrónico</label>
                         <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com">
                         <span class="mensaje-error" id="error-email">Ingresá un correo electrónico válido.</span>
                     </div>
-
                     <div class="campo">
                         <label for="telefono">Teléfono (opcional)</label>
                         <input type="tel" id="telefono" name="telefono" placeholder="Ej: 1123456789">
                         <span class="mensaje-error" id="error-telefono">El teléfono solo puede contener números.</span>
                     </div>
-
                     <div class="campo">
                         <label for="mensaje">Mensaje</label>
                         <textarea id="mensaje" name="mensaje" placeholder="Escribí tu consulta acá…"></textarea>
@@ -107,10 +105,7 @@
                     </div>
 
                     <button type="submit" class="btn-enviar">Enviar mensaje</button>
-
-                    <div class="exito" id="exito">
-                        ✅ ¡Mensaje enviado! Te respondemos a la brevedad.
-                    </div>
+                    <div class="exito" id="exito">✅ ¡Mensaje enviado! Te respondemos a la brevedad.</div>
                 </form>
             </div>
         </div>
@@ -118,47 +113,31 @@
 
     <div id="toast"></div>
 
-    <!-- FOOTER -->
     <footer class="footer">
-        <div class="footer-grid">
-            <div>
-                <div class="footer-logo">
-                    <img src="../img/logo2.png" alt="Toque Artesano de Sofi">
-                </div>
-                <p class="footer-desc">Panadería y pastelería artesanal. Productos frescos, hechos con amor y los mejores ingredientes.</p>
+        <div class="footer-inner">
+            <div class="footer-logo-wrap">
+                <img src="../img/logo2.png" alt="Toque Artesano de Sofi">
             </div>
-            <div>
-                <p class="footer-titulo">Navegación</p>
-                <ul class="footer-links">
-                    <li><a href="../index.html">Inicio</a></li>
-                    <li><a href="productos.html">Productos</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                </ul>
-            </div>
-            <div>
-                <p class="footer-titulo">Contacto</p>
-                <div class="footer-contacto-lista">
-                    <a href="https://wa.me/541124075797" target="_blank">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-                        11-2407-5797
-                    </a>
-                    <a href="https://instagram.com/toqueartesanodesofi" target="_blank">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-                        /toqueartesanodesofi
-                    </a>
-                </div>
+            <div class="footer-divider"></div>
+            <div class="footer-contacto-col">
+                <a href="https://wa.me/541124075797" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                    11-2407-5797
+                </a>
+                <a href="https://instagram.com/toqueartesanodesofi" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                    /toqueartesanodesofi
+                </a>
             </div>
         </div>
         <p class="footer-derechos">© 2026 Toque Artesano de Sofi – Todos los derechos reservados.</p>
     </footer>
 
     <script>
-        // Menú mobile
         document.getElementById('menu-toggle').addEventListener('click', function() {
             document.getElementById('nav-principal').classList.toggle('abierto');
         });
 
-        // LOCALSTORAGE: limpiar datos viejos al entrar
         localStorage.removeItem('contacto_nombre');
         localStorage.removeItem('contacto_email');
 
@@ -173,83 +152,41 @@
 
         form.addEventListener('submit', async function(evento) {
             evento.preventDefault();
-
             const nombre   = document.getElementById('nombre').value.trim();
             const email    = document.getElementById('email').value.trim();
             const telefono = document.getElementById('telefono').value.trim();
             const mensaje  = document.getElementById('mensaje').value.trim();
-
             let hayErrores = false;
 
-            if (nombre === '') { mostrarError('nombre'); hayErrores = true; }
-            else { ocultarError('nombre'); }
-
-            const formatoEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!formatoEmail.test(email)) { mostrarError('email'); hayErrores = true; }
-            else { ocultarError('email'); }
-
-            const soloNumeros = /^\d+$/;
-            if (telefono !== '' && !soloNumeros.test(telefono)) { mostrarError('telefono'); hayErrores = true; }
-            else { ocultarError('telefono'); }
-
-            if (mensaje === '') { mostrarError('mensaje'); hayErrores = true; }
-            else { ocultarError('mensaje'); }
+            if (nombre === '') { mostrarError('nombre'); hayErrores = true; } else { ocultarError('nombre'); }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { mostrarError('email'); hayErrores = true; } else { ocultarError('email'); }
+            if (telefono !== '' && !/^\d+$/.test(telefono)) { mostrarError('telefono'); hayErrores = true; } else { ocultarError('telefono'); }
+            if (mensaje === '') { mostrarError('mensaje'); hayErrores = true; } else { ocultarError('mensaje'); }
 
             if (!hayErrores) {
                 const btn = form.querySelector('.btn-enviar');
-                btn.disabled = true;
-                btn.textContent = 'Enviando…';
-
+                btn.disabled = true; btn.textContent = 'Enviando…';
                 try {
                     const respuesta = await fetch('https://formspree.io/f/maqvlnvj', {
-                        method: 'POST',
-                        body: new FormData(form),
-                        headers: { 'Accept': 'application/json' }
+                        method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' }
                     });
-
                     if (respuesta.ok) {
                         form.reset();
                         document.getElementById('exito').style.display = 'block';
-                        setTimeout(() => {
-                            document.getElementById('exito').style.display = 'none';
-                        }, 5000);
-                    } else {
-                        mostrarAviso('Hubo un error al enviar el mensaje. Intentá de nuevo.');
-                    }
-                } catch (err) {
-                    mostrarAviso('Error de conexión. Verificá tu internet e intentá de nuevo.');
-                } finally {
-                    btn.disabled = false;
-                    btn.textContent = 'Enviar mensaje';
-                }
+                        setTimeout(() => { document.getElementById('exito').style.display = 'none'; }, 5000);
+                    } else { mostrarAviso('Hubo un error al enviar el mensaje. Intentá de nuevo.'); }
+                } catch (err) { mostrarAviso('Error de conexión. Verificá tu internet e intentá de nuevo.'); }
+                finally { btn.disabled = false; btn.textContent = 'Enviar mensaje'; }
             }
         });
 
-        function mostrarError(campo) {
-            document.getElementById(campo).classList.add('error');
-            document.getElementById('error-' + campo).style.display = 'block';
-        }
+        function mostrarError(campo) { document.getElementById(campo).classList.add('error'); document.getElementById('error-' + campo).style.display = 'block'; }
+        function ocultarError(campo) { document.getElementById(campo).classList.remove('error'); document.getElementById('error-' + campo).style.display = 'none'; }
 
-        function ocultarError(campo) {
-            document.getElementById(campo).classList.remove('error');
-            document.getElementById('error-' + campo).style.display = 'none';
-        }
-
-        document.getElementById('nombre').addEventListener('input', function() {
-            if (this.value.trim() !== '') ocultarError('nombre');
-        });
-        document.getElementById('email').addEventListener('input', function() {
-            const formatoEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (formatoEmail.test(this.value.trim())) ocultarError('email');
-        });
-        document.getElementById('telefono').addEventListener('input', function() {
-            const soloNumeros = /^\d+$/;
-            const val = this.value.trim();
-            if (val === '' || soloNumeros.test(val)) ocultarError('telefono');
-        });
-        document.getElementById('mensaje').addEventListener('input', function() {
-            if (this.value.trim() !== '') ocultarError('mensaje');
-        });
+        document.getElementById('nombre').addEventListener('input', function() { if (this.value.trim() !== '') ocultarError('nombre'); });
+        document.getElementById('email').addEventListener('input', function() { if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value.trim())) ocultarError('email'); });
+        document.getElementById('telefono').addEventListener('input', function() { const v = this.value.trim(); if (v === '' || /^\d+$/.test(v)) ocultarError('telefono'); });
+        document.getElementById('mensaje').addEventListener('input', function() { if (this.value.trim() !== '') ocultarError('mensaje'); });
     </script>
 </body>
 </html>

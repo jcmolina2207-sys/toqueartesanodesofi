@@ -6,29 +6,33 @@
     <link rel="icon" href="../img/Logoico.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Lato:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Lato:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <title>Productos – Toque Artesano de Sofi</title>
 </head>
 <body>
 
-    <!-- NAVBAR -->
     <header class="header">
-        <a class="header-logo" href="../index.html">
-            <img src="../img/Logo.jpg" alt="Toque Artesano de Sofi">
-        </a>
-        <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
-            <span></span><span></span><span></span>
-        </div>
-        <nav id="nav-principal">
+        <nav class="header-nav-left" id="nav-principal">
             <ul>
                 <li><a href="../index.html">Inicio</a></li>
-                <li><a href="productos.html">Productos</a></li>
+                <li><a href="productos.html" class="activo">Productos</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
             </ul>
         </nav>
-        <div class="header-cta">
-            <a class="btn-cta-nav" href="productos.html">Hacé tu pedido 🛒</a>
+        <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
+        <a class="header-logo" href="../index.html">
+            <img src="../img/Logo.jpg" alt="Toque Artesano de Sofi">
+            <span class="header-logo-sub">Panadería · Pastelería · Artesanal</span>
+        </a>
+        <div class="header-right">
+            <a class="icon-link" href="https://wa.me/541124075797" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+            </a>
+            <a class="icon-link" href="https://instagram.com/toqueartesanodesofi" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+            </a>
+            <a class="btn-pedido" href="productos.html">Hacé tu pedido 🛒</a>
         </div>
     </header>
 
@@ -40,7 +44,7 @@
         </div>
 
         <div class="productos-lista" id="productos-lista">
-            <p style="text-align:center; color:var(--gris-suave); padding:2rem;">Cargando productos…</p>
+            <p style="text-align:center; color:var(--texto-lt); padding:2rem;">Cargando productos…</p>
         </div>
 
         <div class="btn-finalizar-wrap">
@@ -64,47 +68,31 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
     <footer class="footer">
-        <div class="footer-grid">
-            <div>
-                <div class="footer-logo">
-                    <img src="../img/logo2.png" alt="Toque Artesano de Sofi">
-                </div>
-                <p class="footer-desc">Panadería y pastelería artesanal. Productos frescos, hechos con amor y los mejores ingredientes.</p>
+        <div class="footer-inner">
+            <div class="footer-logo-wrap">
+                <img src="../img/logo2.png" alt="Toque Artesano de Sofi">
             </div>
-            <div>
-                <p class="footer-titulo">Navegación</p>
-                <ul class="footer-links">
-                    <li><a href="../index.html">Inicio</a></li>
-                    <li><a href="productos.html">Productos</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                </ul>
-            </div>
-            <div>
-                <p class="footer-titulo">Contacto</p>
-                <div class="footer-contacto-lista">
-                    <a href="https://wa.me/541124075797" target="_blank">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-                        11-2407-5797
-                    </a>
-                    <a href="https://instagram.com/toqueartesanodesofi" target="_blank">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-                        /toqueartesanodesofi
-                    </a>
-                </div>
+            <div class="footer-divider"></div>
+            <div class="footer-contacto-col">
+                <a href="https://wa.me/541124075797" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                    11-2407-5797
+                </a>
+                <a href="https://instagram.com/toqueartesanodesofi" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                    /toqueartesanodesofi
+                </a>
             </div>
         </div>
         <p class="footer-derechos">© 2026 Toque Artesano de Sofi – Todos los derechos reservados.</p>
     </footer>
 
     <script>
-        // Menú mobile
         document.getElementById('menu-toggle').addEventListener('click', function() {
             document.getElementById('nav-principal').classList.toggle('abierto');
         });
 
-        // LOCALSTORAGE: limpiar carrito al entrar — siempre arranca vacío
         localStorage.removeItem('carrito');
         localStorage.removeItem('contacto_nombre');
         localStorage.removeItem('contacto_email');
@@ -116,45 +104,32 @@
         }
 
         function actualizarCarritoFlotante() {
-            let totalPesos = 0;
-            let totalItems = 0;
-
+            let totalPesos = 0, totalItems = 0;
             document.querySelectorAll('.categoria li').forEach(li => {
                 const cantidad = parseInt(li.querySelector('.cantidad').textContent);
                 if (cantidad > 0) {
-                    const precioTexto = li.querySelector('.precio').textContent.trim();
-                    const precio = parsearPrecio(precioTexto);
-                    totalPesos += precio * cantidad;
+                    totalPesos += parsearPrecio(li.querySelector('.precio').textContent.trim()) * cantidad;
                     totalItems += cantidad;
                 }
             });
-
-            const flotante   = document.getElementById('carrito-flotante');
-            const textoTotal = document.getElementById('carrito-total-texto');
-            const badge      = document.getElementById('carrito-badge');
-
-            if (totalItems > 0) {
-                textoTotal.textContent = '$' + totalPesos.toLocaleString('es-AR');
-                badge.textContent = totalItems;
-                flotante.classList.add('visible');
-            } else {
-                flotante.classList.remove('visible');
-            }
+            const flotante = document.getElementById('carrito-flotante');
+            document.getElementById('carrito-total-texto').textContent = '$' + totalPesos.toLocaleString('es-AR');
+            document.getElementById('carrito-badge').textContent = totalItems;
+            totalItems > 0 ? flotante.classList.add('visible') : flotante.classList.remove('visible');
         }
 
         function crearFilaProducto(p) {
-            const imgEsc    = p.imagen.replace(/'/g, "\\'");
+            const imgEsc = p.imagen.replace(/'/g, "\\'");
             const nombreEsc = p.nombre.replace(/'/g, "\\'");
-            return `
-                <li>
-                    <span class="nombre-producto" onclick="abrirModal('${imgEsc}','${nombreEsc}')">${p.nombre}</span>
-                    <span class="precio">${p.precio}</span>
-                    <div class="cantidad-control">
-                        <button onclick="cambiarCantidad(this,-1)">−</button>
-                        <span class="cantidad">0</span>
-                        <button onclick="cambiarCantidad(this,1)">+</button>
-                    </div>
-                </li>`;
+            return `<li>
+                <span class="nombre-producto" onclick="abrirModal('${imgEsc}','${nombreEsc}')">${p.nombre}</span>
+                <span class="precio">${p.precio}</span>
+                <div class="cantidad-control">
+                    <button onclick="cambiarCantidad(this,-1)">−</button>
+                    <span class="cantidad">0</span>
+                    <button onclick="cambiarCantidad(this,1)">+</button>
+                </div>
+            </li>`;
         }
 
         function crearCategoria(cat) {
@@ -163,12 +138,10 @@
                 html += '<ul>' + cat.productos.map(crearFilaProducto).join('') + '</ul>';
             } else if (cat.subcategorias) {
                 cat.subcategorias.forEach(sub => {
-                    html += `<h3>${sub.titulo}</h3>`;
-                    html += '<ul>' + sub.productos.map(crearFilaProducto).join('') + '</ul>';
+                    html += `<h3>${sub.titulo}</h3><ul>` + sub.productos.map(crearFilaProducto).join('') + '</ul>';
                 });
             }
-            html += '</div>';
-            return html;
+            return html + '</div>';
         }
 
         async function cargarProductos() {
@@ -179,7 +152,7 @@
                 contenedor.innerHTML = categorias.map(crearCategoria).join('');
                 localStorage.removeItem('carrito');
             } catch (error) {
-                contenedor.innerHTML = '<p style="text-align:center; color:#c0392b; padding:2rem;">Error al cargar los productos. Recargá la página.</p>';
+                contenedor.innerHTML = '<p style="text-align:center;color:#c0392b;padding:2rem;">Error al cargar los productos. Recargá la página.</p>';
                 console.error('Error cargando productos.json:', error);
             }
         }
@@ -211,9 +184,7 @@
             document.getElementById('modal').classList.remove('activo');
         }
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') cerrarModal();
-        });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarModal(); });
 
         function finalizarPedido() {
             const items = [];
@@ -221,24 +192,14 @@
                 const cantidadSpan = li.querySelector('.cantidad');
                 const cantidad = parseInt(cantidadSpan.textContent);
                 if (cantidad > 0) {
-                    const nombre = li.querySelector('.nombre-producto').textContent.trim();
-                    const precio = li.querySelector('.precio').textContent.trim();
-                    items.push({ nombre, precio, cantidad });
+                    items.push({ nombre: li.querySelector('.nombre-producto').textContent.trim(), precio: li.querySelector('.precio').textContent.trim(), cantidad });
                     cantidadSpan.textContent = '0';
                 }
             });
-
-            if (items.length === 0) {
-                mostrarAviso('Seleccioná al menos un producto antes de finalizar el pedido.');
-                return;
-            }
-
+            if (items.length === 0) { mostrarAviso('Seleccioná al menos un producto antes de finalizar el pedido.'); return; }
             let msg = '¡Hola! Quiero hacer el siguiente pedido:%0A%0A';
-            items.forEach(i => {
-                msg += `• ${i.nombre} x${i.cantidad} (${i.precio})%0A`;
-            });
+            items.forEach(i => { msg += `• ${i.nombre} x${i.cantidad} (${i.precio})%0A`; });
             msg += '%0A¡Gracias!';
-
             window.open('https://wa.me/541124075797?text=' + msg, '_blank');
             localStorage.removeItem('carrito');
             actualizarCarritoFlotante();
