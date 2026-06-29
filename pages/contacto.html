@@ -4,207 +4,166 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../img/Logoico.ico">
-    <!-- AGREGADO: misma Google Font que el resto del sitio -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Lato:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <title>Contacto – Toque Artesano de Sofi</title>
-
-    <style>
-        /* Estilos específicos del formulario de contacto */
-        .contacto-container {
-            max-width: 500px;
-            margin: 2rem auto;
-            background-color: #f5f0eb;
-            border-radius: 10px;
-            padding: 2rem;
-        }
-
-        .contacto-container h2 {
-            text-align: center;
-            color: #072f42;
-            margin-bottom: 1.5rem;
-        }
-
-        .campo {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 1rem;
-        }
-
-        .campo label {
-            font-size: 0.9rem;
-            color: #1a3a4a;
-            margin-bottom: 0.3rem;
-            font-weight: 700;
-        }
-
-        .campo input,
-        .campo textarea {
-            padding: 0.6rem 0.8rem;
-            border: 1px solid #b0c4cc;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-family: 'Lato', sans-serif;
-            background-color: #fff;
-        }
-
-        .campo textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        /* Estilo cuando un campo tiene error */
-        .campo input.error,
-        .campo textarea.error {
-            border-color: #c0392b;
-        }
-
-        /* Mensaje de error debajo del campo */
-        .mensaje-error {
-            color: #c0392b;
-            font-size: 0.8rem;
-            margin-top: 0.2rem;
-            display: none; /* se muestra solo cuando hay error */
-        }
-
-        .btn-enviar {
-            width: 100%;
-            padding: 0.8rem;
-            background-color: #072f42;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-family: 'Lato', sans-serif;
-            cursor: pointer;
-            margin-top: 0.5rem;
-        }
-
-        .btn-enviar:hover {
-            background-color: #0a4a67;
-        }
-
-        /* Mensaje de éxito que aparece tras enviar */
-        .exito {
-            display: none;
-            text-align: center;
-            color: #1a6a3a;
-            background-color: #d4edda;
-            border-radius: 6px;
-            padding: 1rem;
-            margin-top: 1rem;
-        }
-
-        /* ── Toast (reemplaza los alert) ── */
-        #toast {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%) translateY(20px);
-            background-color: #072f42;
-            color: #fff;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-family: 'Lato', sans-serif;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            z-index: 9999;
-            white-space: nowrap;
-        }
-        #toast.visible {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-    </style>
 </head>
 <body>
+
+    <!-- NAVBAR -->
     <header class="header">
-        <a href="../index.html">
-            <img src="../img/Logo.jpg" alt="Logo">
+        <a class="header-logo" href="../index.html">
+            <img src="../img/Logo.jpg" alt="Toque Artesano de Sofi">
         </a>
-        <nav>
+        <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+            <span></span><span></span><span></span>
+        </div>
+        <nav id="nav-principal">
             <ul>
                 <li><a href="../index.html">Inicio</a></li>
                 <li><a href="productos.html">Productos</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
             </ul>
         </nav>
+        <div class="header-cta">
+            <a class="btn-cta-nav" href="productos.html">Hacé tu pedido 🛒</a>
+        </div>
     </header>
 
     <main>
-        <div class="contacto-container">
-            <h2>Contactanos</h2>
+        <div class="contacto-hero">
+            <span class="seccion-eyebrow">Contacto</span>
+            <h1>Hablemos <em>juntos</em></h1>
+            <p>Escribinos para consultas, pedidos personalizados o lo que necesites. ¡Te respondemos rápido!</p>
+        </div>
 
-            <form id="formulario-contacto" action="https://formspree.io/f/maqvlnvj" method="POST" novalidate>
-                <input type="hidden" name="_subject" value="Nuevo contacto - Toque Artesano de Sofi">
-
-                <div class="campo">
-                    <label for="nombre">Nombre completo</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre">
-                    <span class="mensaje-error" id="error-nombre">Por favor ingresá tu nombre.</span>
+        <div class="contacto-layout">
+            <!-- Panel izquierdo info -->
+            <div class="contacto-info">
+                <h2 class="contacto-info-titulo">¿Cómo <em>podemos</em> ayudarte?</h2>
+                <div class="contacto-info-lista">
+                    <div class="contacto-info-item">
+                        <span class="contacto-info-item-icono">📍</span>
+                        <div class="contacto-info-item-texto">
+                            <strong>Zona</strong>
+                            <span>Berazategui y alrededores</span>
+                        </div>
+                    </div>
+                    <div class="contacto-info-item">
+                        <span class="contacto-info-item-icono">💬</span>
+                        <div class="contacto-info-item-texto">
+                            <strong>WhatsApp</strong>
+                            <a href="https://wa.me/541124075797" target="_blank">11-2407-5797</a>
+                        </div>
+                    </div>
+                    <div class="contacto-info-item">
+                        <span class="contacto-info-item-icono">📸</span>
+                        <div class="contacto-info-item-texto">
+                            <strong>Instagram</strong>
+                            <a href="https://instagram.com/toqueartesanodesofi" target="_blank">@toqueartesanodesofi</a>
+                        </div>
+                    </div>
+                    <div class="contacto-info-item">
+                        <span class="contacto-info-item-icono">⏰</span>
+                        <div class="contacto-info-item-texto">
+                            <strong>Horario de atención</strong>
+                            <span>Lunes a sábado · 9 a 20 hs</span>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                <div class="campo">
-                    <label for="email">Correo electrónico</label>
-                    <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com">
-                    <span class="mensaje-error" id="error-email">Ingresá un correo electrónico válido.</span>
-                </div>
+            <!-- Panel derecho formulario -->
+            <div class="contacto-formulario">
+                <h2>Envianos un mensaje</h2>
 
-                <div class="campo">
-                    <label for="telefono">Teléfono (opcional)</label>
-                    <input type="tel" id="telefono" name="telefono" placeholder="Ej: 1123456789">
-                    <span class="mensaje-error" id="error-telefono">El teléfono solo puede contener números.</span>
-                </div>
+                <form id="formulario-contacto" action="https://formspree.io/f/maqvlnvj" method="POST" novalidate>
+                    <input type="hidden" name="_subject" value="Nuevo contacto - Toque Artesano de Sofi">
 
-                <div class="campo">
-                    <label for="mensaje">Mensaje</label>
-                    <textarea id="mensaje" name="mensaje" placeholder="Escribí tu consulta acá..."></textarea>
-                    <span class="mensaje-error" id="error-mensaje">Por favor escribí tu mensaje.</span>
-                </div>
+                    <div class="campo">
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre">
+                        <span class="mensaje-error" id="error-nombre">Por favor ingresá tu nombre.</span>
+                    </div>
 
-                <button type="submit" class="btn-enviar">Enviar mensaje</button>
+                    <div class="campo">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com">
+                        <span class="mensaje-error" id="error-email">Ingresá un correo electrónico válido.</span>
+                    </div>
 
-                <div class="exito" id="exito">
-                    ¡Mensaje enviado! Te respondemos a la brevedad.
-                </div>
-            </form>
+                    <div class="campo">
+                        <label for="telefono">Teléfono (opcional)</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="Ej: 1123456789">
+                        <span class="mensaje-error" id="error-telefono">El teléfono solo puede contener números.</span>
+                    </div>
+
+                    <div class="campo">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" placeholder="Escribí tu consulta acá…"></textarea>
+                        <span class="mensaje-error" id="error-mensaje">Por favor escribí tu mensaje.</span>
+                    </div>
+
+                    <button type="submit" class="btn-enviar">Enviar mensaje</button>
+
+                    <div class="exito" id="exito">
+                        ✅ ¡Mensaje enviado! Te respondemos a la brevedad.
+                    </div>
+                </form>
+            </div>
         </div>
     </main>
 
-    <!-- TOAST: mensaje flotante que reemplaza los alert() -->
     <div id="toast"></div>
 
+    <!-- FOOTER -->
     <footer class="footer">
-        <div class="footer-logo">
-            <img src="../img/logo2.png" alt="Toque Artesano de Sofi">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">
+                    <img src="../img/logo2.png" alt="Toque Artesano de Sofi">
+                </div>
+                <p class="footer-desc">Panadería y pastelería artesanal. Productos frescos, hechos con amor y los mejores ingredientes.</p>
+            </div>
+            <div>
+                <p class="footer-titulo">Navegación</p>
+                <ul class="footer-links">
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="footer-titulo">Contacto</p>
+                <div class="footer-contacto-lista">
+                    <a href="https://wa.me/541124075797" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                        11-2407-5797
+                    </a>
+                    <a href="https://instagram.com/toqueartesanodesofi" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                        /toqueartesanodesofi
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="footer-contacto">
-            <a href="https://wa.me/541111111111" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-                11-2407-5797
-            </a>
-            <a href="https://instagram.com/toqueartesanodesofi" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-                /toqueartesanodesofi
-            </a>
-        </div>
+        <p class="footer-derechos">© 2026 Toque Artesano de Sofi – Todos los derechos reservados.</p>
     </footer>
-    <div class="footer-derechos">
-        © 2026 Toque Artesano de Sofi – Todos los derechos reservados.
-    </div>
 
     <script>
+        // Menú mobile
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('nav-principal').classList.toggle('abierto');
+        });
+
         // LOCALSTORAGE: limpiar datos viejos al entrar
         localStorage.removeItem('contacto_nombre');
         localStorage.removeItem('contacto_email');
 
         const form = document.getElementById('formulario-contacto');
 
-        /* ── Toast: reemplaza los alert() ── */
         function mostrarAviso(mensaje) {
             const toast = document.getElementById('toast');
             toast.textContent = mensaje;
@@ -239,7 +198,7 @@
             if (!hayErrores) {
                 const btn = form.querySelector('.btn-enviar');
                 btn.disabled = true;
-                btn.textContent = 'Enviando...';
+                btn.textContent = 'Enviando…';
 
                 try {
                     const respuesta = await fetch('https://formspree.io/f/maqvlnvj', {
@@ -249,21 +208,11 @@
                     });
 
                     if (respuesta.ok) {
-                        // LOCALSTORAGE: guardar nombre y email para la próxima visita
-                        localStorage.setItem('contacto_nombre', nombre);
-                        localStorage.setItem('contacto_email',  email);
-
-                        // CORRECCIÓN: limpiar todos los campos del formulario
                         form.reset();
-
-                        // Mostrar mensaje de éxito
                         document.getElementById('exito').style.display = 'block';
-
-                        // Ocultar el mensaje de éxito después de 5 segundos
                         setTimeout(() => {
                             document.getElementById('exito').style.display = 'none';
                         }, 5000);
-
                     } else {
                         mostrarAviso('Hubo un error al enviar el mensaje. Intentá de nuevo.');
                     }
@@ -276,34 +225,28 @@
             }
         });
 
-        // Función que pone el borde rojo y muestra el texto de error
         function mostrarError(campo) {
             document.getElementById(campo).classList.add('error');
             document.getElementById('error-' + campo).style.display = 'block';
         }
 
-        // Función que saca el borde rojo y oculta el texto de error
         function ocultarError(campo) {
             document.getElementById(campo).classList.remove('error');
             document.getElementById('error-' + campo).style.display = 'none';
         }
 
-        // VALIDACIÓN EN TIEMPO REAL
         document.getElementById('nombre').addEventListener('input', function() {
             if (this.value.trim() !== '') ocultarError('nombre');
         });
-
         document.getElementById('email').addEventListener('input', function() {
             const formatoEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (formatoEmail.test(this.value.trim())) ocultarError('email');
         });
-
         document.getElementById('telefono').addEventListener('input', function() {
             const soloNumeros = /^\d+$/;
             const val = this.value.trim();
             if (val === '' || soloNumeros.test(val)) ocultarError('telefono');
         });
-
         document.getElementById('mensaje').addEventListener('input', function() {
             if (this.value.trim() !== '') ocultarError('mensaje');
         });

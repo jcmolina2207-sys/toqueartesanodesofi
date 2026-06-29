@@ -1,87 +1,192 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/Logoico.ico">
-    <!-- AGREGADO: Google Fonts - fuente Lato para todo el sitio -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Lato:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>TOQUE ARTESANO DE SOFI</title>
+    <title>Toque Artesano de Sofi</title>
 </head>
 <body>
+
+    <!-- NAVBAR -->
     <header class="header">
-        <a href="Index.html">
-            <img src="img/Logo.jpg" alt="Logo">
+        <a class="header-logo" href="index.html">
+            <img src="img/Logo.jpg" alt="Toque Artesano de Sofi">
         </a>
-        <nav>
+        <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+            <span></span><span></span><span></span>
+        </div>
+        <nav id="nav-principal">
             <ul>
-                <li><a href="Index.html">Inicio</a></li>
+                <li><a href="index.html">Inicio</a></li>
                 <li><a href="pages/productos.html">Productos</a></li>
                 <li><a href="pages/contacto.html">Contacto</a></li>
             </ul>
         </nav>
+        <div class="header-cta">
+            <a class="btn-cta-nav" href="pages/productos.html">Hacé tu pedido 🛒</a>
+        </div>
     </header>
-    <main>
-        <section class="seccion">
-                <h2>Ofertas de la semana</h2>
-                <a href="pages/productos.html">
-                <!-- CORREGIDO: ruta de imagen arreglada (antes apuntaba a una carpeta externa con espacios) -->
-                <img src="img/Churro chocolate + DDL.png" alt="imagen de producto en oferta">
-                </a>
-                <a href="pages/productos.html">
-                    <button>Ver mas productos</button>
-                </a>
-        </section>
-    </main>
-    <!-- SECCIÓN RESEÑAS con CSS Grid -->
-    <section class="resenas">
-        <h2 class="resenas-titulo">Lo que dicen nuestros clientes</h2>
-        <div class="resenas-grid">
-            <div class="resena-card">
-                <p class="resena-texto">"Los churros con chocolate son una delicia, super frescos y a buen precio. ¡Volvería a pedir sin dudarlo!"</p>
-                <span class="resena-autor">— María L.</span>
-                <span class="resena-estrellas">★★★★★</span>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-contenido">
+            <span class="hero-eyebrow">✦ Panadería · Pastelería · Artesanal</span>
+            <h1 class="hero-titulo">
+                Hechos con amor,<br>
+                para <em>endulzar</em><br>
+                tu día
+            </h1>
+            <p class="hero-sub">Productos artesanales, frescos y hechos cada día para vos. Sin conservantes, con ingredientes de calidad.</p>
+            <div class="hero-botones">
+                <a class="btn-primario" href="pages/productos.html">Ver productos →</a>
+                <a class="btn-secundario" href="pages/contacto.html">Contactanos</a>
             </div>
-            <div class="resena-card">
-                <p class="resena-texto">"Los alfajores de maicena son increíbles, caseros de verdad. Perfectos para regalar."</p>
-                <span class="resena-autor">— Carlos M.</span>
-                <span class="resena-estrellas">★★★★★</span>
-            </div>
-            <div class="resena-card">
-                <p class="resena-texto">"La torta brownie superó mis expectativas. La llevo a todas las reuniones y siempre piden el contacto."</p>
-                <span class="resena-autor">— Florencia R.</span>
-                <span class="resena-estrellas">★★★★★</span>
-            </div>
-            <div class="resena-card">
-                <p class="resena-texto">"Pedí una docena de churros DDL para el cumple de mi hijo y volaron. Todos quedaron encantados."</p>
-                <span class="resena-autor">— Adrián G.</span>
-                <span class="resena-estrellas">★★★★★</span>
+        </div>
+        <div class="hero-imagen">
+            <img src="img/Churro chocolate + DDL.png" alt="Churros artesanales Toque Artesano de Sofi">
+            <div class="hero-badge">
+                <span class="hero-badge-icono">🌾</span>
+                <div class="hero-badge-texto">
+                    <strong>100% artesanal</strong>
+                    <span>Ingredientes de calidad</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="footer-logo">
-            <img src="img/logo2.png" alt="Toque Artesano de Sofi">
-        </div>
-
-        <div class="footer-contacto">
-            <a href="https://wa.me/541111111111" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-                11-2407-5797
+    <!-- CATEGORÍAS -->
+    <div class="categorias-strip">
+        <div class="categorias-strip-grid">
+            <a class="cat-item" href="pages/productos.html">
+                <div class="cat-icono">🥐</div>
+                <span class="cat-nombre">Alfajores</span>
             </a>
-
-            <a href="https://instagram.com/toqueartesanodesofi" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-                /toqueartesanodesofi
+            <a class="cat-item" href="pages/productos.html">
+                <div class="cat-icono">🥖</div>
+                <span class="cat-nombre">Churros</span>
+            </a>
+            <a class="cat-item" href="pages/productos.html">
+                <div class="cat-icono">🎂</div>
+                <span class="cat-nombre">Tortas</span>
+            </a>
+            <a class="cat-item" href="pages/productos.html">
+                <div class="cat-icono">🍞</div>
+                <span class="cat-nombre">Pan</span>
             </a>
         </div>
-    </footer>
-    <div class="footer-derechos">
-        © 2026 Toque Artesano de Sofi – Todos los derechos reservados.
     </div>
+
+    <!-- RESEÑAS -->
+    <section class="resenas">
+        <div class="resenas-titulo-wrap">
+            <span class="seccion-eyebrow">Nuestros clientes</span>
+            <h2 class="seccion-titulo">Lo que dicen <em>de nosotros</em></h2>
+        </div>
+        <div class="resenas-grid">
+            <div class="resena-card">
+                <div class="resena-estrellas">★★★★★</div>
+                <p class="resena-texto">"Los churros con chocolate son una delicia, super frescos y a buen precio. ¡Volvería a pedir sin dudarlo!"</p>
+                <span class="resena-autor">— María L.</span>
+            </div>
+            <div class="resena-card">
+                <div class="resena-estrellas">★★★★★</div>
+                <p class="resena-texto">"Los alfajores de maicena son increíbles, caseros de verdad. Perfectos para regalar."</p>
+                <span class="resena-autor">— Carlos M.</span>
+            </div>
+            <div class="resena-card">
+                <div class="resena-estrellas">★★★★★</div>
+                <p class="resena-texto">"La torta brownie superó mis expectativas. La llevo a todas las reuniones y siempre piden el contacto."</p>
+                <span class="resena-autor">— Florencia R.</span>
+            </div>
+            <div class="resena-card">
+                <div class="resena-estrellas">★★★★★</div>
+                <p class="resena-texto">"Pedí una docena de churros DDL para el cumple de mi hijo y volaron. Todos quedaron encantados."</p>
+                <span class="resena-autor">— Adrián G.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section class="beneficios">
+        <div class="beneficios-grid">
+            <div class="beneficio-card">
+                <span class="beneficio-icono">🌿</span>
+                <strong class="beneficio-nombre">Ingredientes de calidad</strong>
+                <p class="beneficio-desc">Seleccionamos cada ingrediente para garantizar el mejor sabor.</p>
+            </div>
+            <div class="beneficio-card">
+                <span class="beneficio-icono">❤️</span>
+                <strong class="beneficio-nombre">Hechos con amor</strong>
+                <p class="beneficio-desc">Cada producto es elaborado con dedicación y cariño.</p>
+            </div>
+            <div class="beneficio-card">
+                <span class="beneficio-icono">🍽️</span>
+                <strong class="beneficio-nombre">Recetas tradicionales</strong>
+                <p class="beneficio-desc">Sabores de siempre, con el toque especial de Sofi.</p>
+            </div>
+            <div class="beneficio-card">
+                <span class="beneficio-icono">☀️</span>
+                <strong class="beneficio-nombre">Frescos todos los días</strong>
+                <p class="beneficio-desc">Elaboramos al momento para que lleguen en su punto.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <div class="cta-banner">
+        <div class="cta-banner-wrap">
+            <div class="cta-banner-icono">💬</div>
+            <div class="cta-banner-texto">
+                <strong>¿Tenés dudas o querés hacer un pedido personalizado?</strong>
+                <p>Escribinos por WhatsApp o completá el formulario de contacto.</p>
+            </div>
+            <a class="btn-primario" href="pages/contacto.html">Contactanos</a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">
+                    <img src="img/logo2.png" alt="Toque Artesano de Sofi">
+                </div>
+                <p class="footer-desc">Panadería y pastelería artesanal. Productos frescos, hechos con amor y los mejores ingredientes.</p>
+            </div>
+            <div>
+                <p class="footer-titulo">Navegación</p>
+                <ul class="footer-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="pages/productos.html">Productos</a></li>
+                    <li><a href="pages/contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="footer-titulo">Contacto</p>
+                <div class="footer-contacto-lista">
+                    <a href="https://wa.me/541124075797" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                        11-2407-5797
+                    </a>
+                    <a href="https://instagram.com/toqueartesanodesofi" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                        /toqueartesanodesofi
+                    </a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-derechos">© 2026 Toque Artesano de Sofi – Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('nav-principal').classList.toggle('abierto');
+        });
+    </script>
 </body>
 </html>
