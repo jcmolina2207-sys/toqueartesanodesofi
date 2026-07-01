@@ -48,14 +48,14 @@
       { "nombre": "Bizcochuelo",           "precio": "$4.500",  "imagen": "../img/Bizcochuelo.jpg" },
       { "nombre": "Lemon pie",             "precio": "$18.000", "imagen": "../img/Lemon pie.jpg" },
       { "nombre": "Torta brownie",         "precio": "$26.000", "imagen": "../img/Torta brownie.jpg" },
-      { "nombre": "Pastafrola batata",     "precio": "$12.000", "imagen": "../img/Torta brownie.jpg" },
-      { "nombre": "Pastafrola membrillo",  "precio": "$14.000", "imagen": "../img/Torta brownie.jpg" }
+      { "nombre": "Pastafrola batata",     "precio": "$12.000", "imagen": "../img/FrolaB.jpg" },
+      { "nombre": "Pastafrola membrillo",  "precio": "$14.000", "imagen": "../img/FrolaM.jpg" }
     ]
   },
   {
     "categoria": "🍞 Pan",
     "productos": [
-      { "nombre": "Biscochitos 1/4", "precio": "$1.600", "imagen": "../img/Biscochitos 1-4.jpg" },
+      { "nombre": "Biscochitos 1/4", "precio": "$1.600", "imagen": "../img/Bisco.jpg" },
       { "nombre": "Chipa 1/4",       "precio": "$",      "imagen": "../img/Chipa.jpg" },
       { "nombre": "Chips de j/q",    "precio": "$",      "imagen": "../img/Chips de j-q.jpg" },
       { "nombre": "Libritos 1/4",    "precio": "$",      "imagen": "../img/Libritos 01.jpg" },
