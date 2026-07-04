@@ -12,6 +12,7 @@
 </head>
 <body>
 
+    <!-- NAVBAR -->
     <header class="header">
         <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
         <div class="header-center">
@@ -38,13 +39,16 @@
     </header>
 
     <main>
+        <!-- HERO CONTACTO -->
         <div class="contacto-hero">
             <span class="seccion-eyebrow">Contacto</span>
             <h1>Hablemos <em>juntos</em></h1>
             <p>Escribinos para consultas, pedidos personalizados o lo que necesites. ¡Te respondemos rápido!</p>
         </div>
 
+        <!-- LAYOUT: INFO + FORMULARIO -->
         <div class="contacto-layout">
+            <!-- COLUMNA INFO DE CONTACTO -->
             <div class="contacto-info">
                 <h2 class="contacto-info-titulo">¿Cómo podemos ayudarte?</h2>
                 <div class="contacto-info-lista">
@@ -79,6 +83,7 @@
                 </div>
             </div>
 
+            <!-- FORMULARIO DE CONTACTO (Formspree) -->
             <div class="contacto-formulario">
                 <h2>Envianos un mensaje</h2>
                 <form id="formulario-contacto" action="https://formspree.io/f/maqvlnvj" method="POST" novalidate>
@@ -112,8 +117,10 @@
         </div>
     </main>
 
+    <!-- TOAST DE AVISOS -->
     <div id="toast"></div>
 
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-logo-wrap">
@@ -134,16 +141,20 @@
         <p class="footer-derechos">© 2026 Toque Artesano de Sofi – Todos los derechos reservados.</p>
     </footer>
 
+    <!-- SCRIPTS -->
     <script>
+        // Menú hamburguesa (mobile)
         document.getElementById('menu-toggle').addEventListener('click', function() {
             document.getElementById('nav-principal').classList.toggle('abierto');
         });
 
+        // Limpieza de datos viejos de localStorage al entrar a la página
         localStorage.removeItem('contacto_nombre');
         localStorage.removeItem('contacto_email');
 
         const form = document.getElementById('formulario-contacto');
 
+        // Muestra un aviso tipo "toast" abajo de la pantalla
         function mostrarAviso(mensaje) {
             const toast = document.getElementById('toast');
             toast.textContent = mensaje;
@@ -151,6 +162,7 @@
             setTimeout(() => toast.classList.remove('visible'), 3000);
         }
 
+        // Envío del formulario con validación y fetch a Formspree
         form.addEventListener('submit', async function(evento) {
             evento.preventDefault();
             const nombre   = document.getElementById('nombre').value.trim();
@@ -159,6 +171,7 @@
             const mensaje  = document.getElementById('mensaje').value.trim();
             let hayErrores = false;
 
+            // Validaciones por campo
             if (nombre === '') { mostrarError('nombre'); hayErrores = true; } else { ocultarError('nombre'); }
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { mostrarError('email'); hayErrores = true; } else { ocultarError('email'); }
             if (telefono !== '' && !/^\d+$/.test(telefono)) { mostrarError('telefono'); hayErrores = true; } else { ocultarError('telefono'); }
@@ -181,9 +194,11 @@
             }
         });
 
+        // Helpers para mostrar/ocultar mensajes de error por campo
         function mostrarError(campo) { document.getElementById(campo).classList.add('error'); document.getElementById('error-' + campo).style.display = 'block'; }
         function ocultarError(campo) { document.getElementById(campo).classList.remove('error'); document.getElementById('error-' + campo).style.display = 'none'; }
 
+        // Validación en tiempo real (mientras el usuario escribe)
         document.getElementById('nombre').addEventListener('input', function() { if (this.value.trim() !== '') ocultarError('nombre'); });
         document.getElementById('email').addEventListener('input', function() { if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value.trim())) ocultarError('email'); });
         document.getElementById('telefono').addEventListener('input', function() { const v = this.value.trim(); if (v === '' || /^\d+$/.test(v)) ocultarError('telefono'); else mostrarError('telefono'); });

@@ -12,6 +12,7 @@
 </head>
 <body>
 
+    <!-- NAVBAR -->
     <header class="header">
         <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
         <div class="header-center">
@@ -38,29 +39,35 @@
     </header>
 
     <main>
+        <!-- HERO PRODUCTOS -->
         <div class="productos-hero">
             <span class="seccion-eyebrow">Catálogo</span>
             <h1>Nuestros <em>productos</em></h1>
             <p>Hacé clic en un producto para ver la foto · Usá +/− para elegir cantidad · Presioná <strong>Finalizar pedido</strong></p>
         </div>
 
+        <!-- LISTA DE PRODUCTOS (se completa dinámicamente vía JS desde productos.json) -->
         <div class="productos-lista" id="productos-lista">
             <p style="text-align:center; color:var(--texto-lt); padding:2rem;">Cargando productos…</p>
         </div>
 
+        <!-- BOTÓN FINALIZAR PEDIDO -->
         <div class="btn-finalizar-wrap">
             <button class="btn-finalizar" onclick="finalizarPedido()">Finalizar pedido 🛒</button>
         </div>
     </main>
 
+    <!-- TOAST DE AVISOS -->
     <div id="toast"></div>
 
+    <!-- CARRITO FLOTANTE (aparece cuando hay al menos 1 producto seleccionado) -->
     <div id="carrito-flotante" onclick="finalizarPedido()">
         <span class="icono-carrito">🛒</span>
         <span class="carrito-total" id="carrito-total-texto">$0</span>
         <span class="carrito-badge" id="carrito-badge">0</span>
     </div>
 
+    <!-- MODAL DE IMAGEN DE PRODUCTO -->
     <div id="modal" onclick="cerrarModal(event)">
         <div class="modal-contenido" onclick="event.stopPropagation()">
             <button class="modal-cerrar" onclick="cerrarModal()">✕</button>
@@ -69,6 +76,7 @@
         </div>
     </div>
 
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-logo-wrap">
@@ -89,21 +97,26 @@
         <p class="footer-derechos">© 2026 Toque Artesano de Sofi – Todos los derechos reservados.</p>
     </footer>
 
+    <!-- SCRIPTS -->
     <script>
+        // Menú hamburguesa (mobile)
         document.getElementById('menu-toggle').addEventListener('click', function() {
             document.getElementById('nav-principal').classList.toggle('abierto');
         });
 
+        // Limpieza de datos viejos de localStorage al entrar a la página
         localStorage.removeItem('carrito');
         localStorage.removeItem('contacto_nombre');
         localStorage.removeItem('contacto_email');
 
+        // Convierte un precio en texto (ej: "$1.100") a número entero
         function parsearPrecio(texto) {
             const limpio = texto.replace(/[$.\s]/g, '').replace(',', '.');
             const num = parseInt(limpio);
             return isNaN(num) ? 0 : num;
         }
 
+        // Recalcula el total y la cantidad de items, y muestra/oculta el carrito flotante
         function actualizarCarritoFlotante() {
             let totalPesos = 0, totalItems = 0;
             document.querySelectorAll('.categoria li').forEach(li => {
@@ -119,6 +132,7 @@
             totalItems > 0 ? flotante.classList.add('visible') : flotante.classList.remove('visible');
         }
 
+        // Genera el HTML de una fila de producto (nombre + precio + control de cantidad)
         function crearFilaProducto(p) {
             const imgEsc = p.imagen.replace(/'/g, "\\'");
             const nombreEsc = p.nombre.replace(/'/g, "\\'");
@@ -133,6 +147,7 @@
             </li>`;
         }
 
+        // Genera el HTML de una categoría completa (con o sin subcategorías)
         function crearCategoria(cat) {
             let html = `<div class="categoria"><h2>${cat.categoria}</h2>`;
             if (cat.productos) {
@@ -145,6 +160,7 @@
             return html + '</div>';
         }
 
+        // Carga productos.json de forma asíncrona y renderiza la lista completa
         async function cargarProductos() {
             const contenedor = document.getElementById('productos-lista');
             try {
@@ -160,6 +176,7 @@
 
         cargarProductos();
 
+        // Muestra un aviso tipo "toast" abajo de la pantalla
         function mostrarAviso(mensaje) {
             const toast = document.getElementById('toast');
             toast.textContent = mensaje;
@@ -167,6 +184,7 @@
             setTimeout(() => toast.classList.remove('visible'), 3000);
         }
 
+        // Suma o resta 1 a la cantidad de un producto (sin bajar de 0)
         function cambiarCantidad(btn, delta) {
             const span = btn.parentElement.querySelector('.cantidad');
             let val = parseInt(span.textContent) + delta;
@@ -175,18 +193,22 @@
             actualizarCarritoFlotante();
         }
 
+        // Abre el modal con la foto ampliada del producto
         function abrirModal(src, titulo) {
             document.getElementById('modal-img').src = src;
             document.getElementById('modal-titulo').textContent = titulo;
             document.getElementById('modal').classList.add('activo');
         }
 
+        // Cierra el modal de imagen
         function cerrarModal() {
             document.getElementById('modal').classList.remove('activo');
         }
 
+        // Cierra el modal con la tecla Escape
         document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarModal(); });
 
+        // Junta los productos seleccionados, arma el mensaje y abre WhatsApp
         function finalizarPedido() {
             const items = [];
             document.querySelectorAll('.categoria li').forEach(li => {
