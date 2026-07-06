@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contactate con Toque Artesano de Sofi para consultas y pedidos personalizados. Escribinos por WhatsApp o completá el formulario de contacto.">
+    <meta name="description" content="Demostración técnica de consumo de una API REST externa mediante fetch, como parte del proyecto final de Toque Artesano de Sofi.">
     <meta name="author" content="Toque Artesano de Sofi">
-    <meta property="og:title" content="Contacto – Toque Artesano de Sofi">
-    <meta property="og:description" content="Escribinos por WhatsApp o completá el formulario de contacto.">
-    <meta property="og:type" content="website">
     <link rel="icon" href="../img/Logoico.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Lato:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
-    <title>Contacto – Toque Artesano de Sofi</title>
+    <title>Demo API REST – Toque Artesano de Sofi</title>
 </head>
 <body>
 
@@ -28,7 +25,7 @@
                 <ul>
                     <li><a href="../index.html">Inicio</a></li>
                     <li><a href="productos.html">Productos</a></li>
-                    <li><a href="contacto.html" class="activo">Contacto</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
                 </ul>
             </nav>
         </div>
@@ -44,86 +41,20 @@
     </header>
 
     <main>
-        <!-- HERO CONTACTO -->
-        <div class="contacto-hero">
-            <span class="seccion-eyebrow">Contacto</span>
-            <h1>Hablemos <em>juntos</em></h1>
-            <p>Escribinos para consultas, pedidos personalizados o lo que necesites. ¡Te respondemos rápido!</p>
+        <!-- HERO DEMO -->
+        <div class="productos-hero">
+            <span class="seccion-eyebrow">Requisito técnico</span>
+            <h1>Demo de <em>API REST</em></h1>
+            <p>Esta sección consume una API REST pública (Fake Store API) mediante <code>fetch</code>, de forma independiente al catálogo real del negocio, que sigue funcionando con datos propios.</p>
         </div>
 
-        <!-- LAYOUT: INFO + FORMULARIO -->
-        <div class="contacto-layout">
-            <!-- COLUMNA INFO DE CONTACTO -->
-            <div class="contacto-info">
-                <h2 class="contacto-info-titulo">¿Cómo podemos ayudarte?</h2>
-                <div class="contacto-info-lista">
-                    <div class="contacto-info-item">
-                        <span class="contacto-info-item-icono">📍</span>
-                        <div class="contacto-info-item-texto">
-                            <strong>Zona</strong>
-                            <span>Berazategui y alrededores</span>
-                        </div>
-                    </div>
-                    <div class="contacto-info-item">
-                        <span class="contacto-info-item-icono">💬</span>
-                        <div class="contacto-info-item-texto">
-                            <strong>WhatsApp</strong>
-                            <a href="https://wa.me/541124075797" target="_blank">11-2407-5797</a>
-                        </div>
-                    </div>
-                    <div class="contacto-info-item">
-                        <span class="contacto-info-item-icono">📸</span>
-                        <div class="contacto-info-item-texto">
-                            <strong>Instagram</strong>
-                            <a href="https://instagram.com/toqueartesanodesofi" target="_blank">@toqueartesanodesofi</a>
-                        </div>
-                    </div>
-                    <div class="contacto-info-item">
-                        <span class="contacto-info-item-icono">⏰</span>
-                        <div class="contacto-info-item-texto">
-                            <strong>Horario</strong>
-                            <span>Lunes a sábado · 9 a 20 hs</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- FORMULARIO DE CONTACTO (Formspree) -->
-            <div class="contacto-formulario">
-                <h2>Envianos un mensaje</h2>
-                <form id="formulario-contacto" action="https://formspree.io/f/maqvlnvj" method="POST" novalidate>
-                    <input type="hidden" name="_subject" value="Nuevo contacto - Toque Artesano de Sofi">
-
-                    <div class="campo">
-                        <label for="nombre">Nombre completo</label>
-                        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre">
-                        <span class="mensaje-error" id="error-nombre">Por favor ingresá tu nombre.</span>
-                    </div>
-                    <div class="campo">
-                        <label for="email">Correo electrónico</label>
-                        <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com">
-                        <span class="mensaje-error" id="error-email">Ingresá un correo electrónico válido.</span>
-                    </div>
-                    <div class="campo">
-                        <label for="telefono">Teléfono (opcional)</label>
-                        <input type="tel" id="telefono" name="telefono" placeholder="Ej: 1123456789">
-                        <span class="mensaje-error" id="error-telefono">El teléfono solo puede contener números.</span>
-                    </div>
-                    <div class="campo">
-                        <label for="mensaje">Mensaje</label>
-                        <textarea id="mensaje" name="mensaje" placeholder="Escribí tu consulta acá…"></textarea>
-                        <span class="mensaje-error" id="error-mensaje">Por favor escribí tu mensaje.</span>
-                    </div>
-
-                    <button type="submit" class="btn-enviar">Enviar mensaje</button>
-                    <div class="exito" id="exito">✅ ¡Mensaje enviado! Te respondemos a la brevedad.</div>
-                </form>
-            </div>
+        <!-- LISTA DE PRODUCTOS DESDE LA API -->
+        <div class="demo-api-lista" id="demo-api-lista">
+            <p style="text-align:center; color:var(--texto-lt); padding:2rem;">Cargando productos desde la API…</p>
         </div>
+
+        <p class="demo-api-nota">Fuente: <a href="https://fakestoreapi.com" target="_blank" rel="noopener">fakestoreapi.com</a> — productos de ejemplo, no forman parte del catálogo real de Toque Artesano de Sofi.</p>
     </main>
-
-    <!-- TOAST DE AVISOS -->
-    <div id="toast"></div>
 
     <!-- FOOTER -->
     <footer class="footer">
@@ -144,11 +75,10 @@
             </div>
         </div>
         <p class="footer-derechos">© 2026 Toque Artesano de Sofi – Todos los derechos reservados.</p>
-        <p class="footer-demo-link"><a href="demo-api.html">Demo técnica: consumo de API REST</a></p>
     </footer>
 
     <!-- SCRIPTS -->
     <script src="../js/script.js"></script>
-    <script src="../js/contacto.js"></script>
+    <script src="../js/demo-api.js"></script>
 </body>
 </html>

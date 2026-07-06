@@ -652,6 +652,23 @@ a { color: inherit; }
     margin: 0 auto;
 }
 
+.footer-demo-link {
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--texto-lt);
+    padding-top: 0.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-demo-link a {
+    color: var(--texto-lt);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.footer-demo-link a:hover { color: var(--texto-md); }
+
 /* ═══════════════════════════════
    PÁGINA PRODUCTOS
    ═══════════════════════════════ */
@@ -1072,6 +1089,74 @@ a { color: inherit; }
 }
 
 /* ═══════════════════════════════
+   PÁGINA DEMO API REST (requisito técnico)
+   ═══════════════════════════════ */
+.demo-api-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.2rem;
+    padding: 2rem 2.5rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+}
+
+.demo-api-card {
+    background: var(--blanco);
+    border-radius: var(--radio-lg);
+    padding: 1rem;
+    box-shadow: 0 1px 6px rgba(26,46,59,0.08);
+    border: 1px solid var(--borde);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.demo-api-card:hover {
+    box-shadow: 0 4px 20px rgba(26,46,59,0.13);
+    transform: translateY(-3px);
+}
+
+.demo-api-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
+    background: var(--gris-cats);
+    border-radius: var(--radio);
+    padding: 0.5rem;
+}
+
+.demo-api-card h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--texto);
+    line-height: 1.3;
+    min-height: 2.4em;
+    /* Recorta títulos largos de la API a 2 líneas */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.demo-api-precio {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--dorado);
+}
+
+.demo-api-nota {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 2.5rem 2.5rem;
+    font-size: 0.8rem;
+    color: var(--texto-lt);
+    text-align: center;
+}
+
+.demo-api-nota a { color: var(--texto-md); text-decoration: underline; text-underline-offset: 2px; }
+
+/* ═══════════════════════════════
    RESPONSIVE — TABLET (≤ 1024px)
    ═══════════════════════════════ */
 @media (max-width: 1024px) {
@@ -1186,6 +1271,9 @@ a { color: inherit; }
 
     /* Productos */
     .productos-lista { grid-template-columns: 1fr; padding: 1.2rem 1rem; gap: 1rem; }
+
+    /* Demo API */
+    .demo-api-lista { padding: 1.2rem 1rem; gap: 1rem; }
 }
 
 /* ═══════════════════════════════
