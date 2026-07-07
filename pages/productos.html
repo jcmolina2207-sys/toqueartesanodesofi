@@ -48,7 +48,7 @@
         <div class="productos-hero">
             <span class="seccion-eyebrow">Catálogo</span>
             <h1>Nuestros <em>productos</em></h1>
-            <p>Hacé clic en un producto para ver la foto · Usá +/− para elegir cantidad · Presioná <strong>Finalizar pedido</strong></p>
+            <p>Elegí tus productos favoritos, usá +/− para la cantidad · Tocá el carrito para revisar y confirmar tu pedido</p>
         </div>
 
         <!-- LISTA DE PRODUCTOS (se completa dinámicamente vía JS desde productos.json) -->
@@ -56,9 +56,9 @@
             <p style="text-align:center; color:var(--texto-lt); padding:2rem;">Cargando productos…</p>
         </div>
 
-        <!-- BOTÓN FINALIZAR PEDIDO -->
+        <!-- BOTÓN VER CARRITO -->
         <div class="btn-finalizar-wrap">
-            <button class="btn-finalizar" onclick="finalizarPedido()">Finalizar pedido 🛒</button>
+            <button class="btn-finalizar" onclick="abrirCarritoModal()">Ver mi pedido 🛒</button>
         </div>
     </main>
 
@@ -66,7 +66,7 @@
     <div id="toast"></div>
 
     <!-- CARRITO FLOTANTE (aparece cuando hay al menos 1 producto seleccionado) -->
-    <div id="carrito-flotante" onclick="finalizarPedido()">
+    <div id="carrito-flotante" onclick="abrirCarritoModal()">
         <span class="icono-carrito">🛒</span>
         <span class="carrito-total" id="carrito-total-texto">$0</span>
         <span class="carrito-badge" id="carrito-badge">0</span>
@@ -78,6 +78,20 @@
             <button class="modal-cerrar" onclick="cerrarModal()">✕</button>
             <img id="modal-img" src="" alt="">
             <p id="modal-titulo"></p>
+        </div>
+    </div>
+
+    <!-- MODAL DE CARRITO (edición y eliminación de productos, confirmación de pedido) -->
+    <div id="modal-carrito" onclick="cerrarCarritoModalFondo(event)">
+        <div class="carrito-modal-contenido" onclick="event.stopPropagation()">
+            <button class="modal-cerrar" onclick="cerrarCarritoModal()">✕</button>
+            <h2>Tu pedido</h2>
+            <div id="carrito-items"></div>
+            <div class="carrito-modal-footer">
+                <span class="carrito-modal-total-label">Total</span>
+                <span class="carrito-modal-total" id="carrito-modal-total">$0</span>
+            </div>
+            <button class="btn-finalizar" onclick="finalizarPedido()">Finalizar pedido por WhatsApp 🛒</button>
         </div>
     </div>
 
