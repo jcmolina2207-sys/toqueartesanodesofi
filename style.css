@@ -111,12 +111,24 @@ a { color: inherit; }
     border-radius: 2px;
 }
 
+/* Mensaje de clima dinámico, centrado en el hueco entre el nav y los íconos */
+.header-clima {
+    margin: 0 auto;
+    color: rgba(255,255,255,0.65);
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /* Zona derecha */
 .header-right {
     grid-column: 3;
-    justify-self: end;
+    justify-self: stretch;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 1rem;
 }
 
@@ -1333,6 +1345,9 @@ a { color: inherit; }
 
     /* Ocultar btn pedido y dejar solo iconos */
     .btn-pedido { display: none; }
+
+    /* Ocultar mensaje de clima: no entra en el header mobile */
+    .header-clima { display: none; }
 
     /* Menú desplegable móvil */
     .header-nav-principal.abierto {
